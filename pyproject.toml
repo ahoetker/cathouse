@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cathouse"
-version = "0.2.0"
+version = "0.2.1"
 description = "Demo REST API for learning purposes."
 authors = ["Andrew Hoetker <andrew@hoetker.engineer>"]
 

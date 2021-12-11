@@ -12,7 +12,7 @@ from fastapi.templating import Jinja2Templates
 
 
 def get_application():
-    app = FastAPI(title="Cat Management Server", version="0.2.0")
+    app = FastAPI(title="Cat Management Server", version="0.2.1")
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
