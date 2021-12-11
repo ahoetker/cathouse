@@ -1,4 +1,12 @@
 [[package]]
+name = "aiofiles"
+version = "0.8.0"
+description = "File support for asyncio."
+category = "main"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[[package]]
 name = "aiosqlite"
 version = "0.17.0"
 description = "asyncio bridge to the standard sqlite3 module"
@@ -314,6 +322,20 @@ description = "iniconfig: brain-dead simple config-ini parsing"
 category = "dev"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "jinja2"
+version = "3.0.3"
+description = "A very fast and expressive template engine."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+MarkupSafe = ">=2.0"
+
+[package.extras]
+i18n = ["Babel (>=2.7)"]
 
 [[package]]
 name = "mako"
@@ -634,9 +656,13 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "6e703f8f9d7627fe19c09758c5ef9a1cfd79c5c8345d3ef961622c023f1792e6"
+content-hash = "b8703a8b4fde8f87411a65f5cf849b1267b113868adc9cd6e163b0fd25f868cd"
 
 [metadata.files]
+aiofiles = [
+    {file = "aiofiles-0.8.0-py3-none-any.whl", hash = "sha256:7a973fc22b29e9962d0897805ace5856e6a566ab1f0c8e5c91ff6c866519c937"},
+    {file = "aiofiles-0.8.0.tar.gz", hash = "sha256:8334f23235248a3b2e83b2c3a78a22674f39969b96397126cc93664d9a901e59"},
+]
 aiosqlite = [
     {file = "aiosqlite-0.17.0-py3-none-any.whl", hash = "sha256:6c49dc6d3405929b1d08eeccc72306d3677503cc5e5e43771efc1e00232e8231"},
     {file = "aiosqlite-0.17.0.tar.gz", hash = "sha256:f0e6acc24bc4864149267ac82fb46dfb3be4455f99fe21df82609cc6e6baee51"},
@@ -814,6 +840,10 @@ importlib-resources = [
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
     {file = "iniconfig-1.1.1.tar.gz", hash = "sha256:bc3af051d7d14b2ee5ef9969666def0cd1a000e121eaea580d4a313df4b37f32"},
+]
+jinja2 = [
+    {file = "Jinja2-3.0.3-py3-none-any.whl", hash = "sha256:077ce6014f7b40d03b47d1f1ca4b0fc8328a692bd284016f806ed0eaca390ad8"},
+    {file = "Jinja2-3.0.3.tar.gz", hash = "sha256:611bb273cd68f3b993fabdc4064fc858c5b47a973cb5aa7999ec1ba405c87cd7"},
 ]
 mako = [
     {file = "Mako-1.1.6-py2.py3-none-any.whl", hash = "sha256:afaf8e515d075b22fad7d7b8b30e4a1c90624ff2f3733a06ec125f5a5f043a57"},
