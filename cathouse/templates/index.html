@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Management Server</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<div class="container" id="app">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col">
+                <h1>Cat Management Server</h1>
+            </div>
+            <div class="col">
+                <button onclick="fetchCatData().then(cats => updateTable(cats))" type="button" class="btn btn-primary">Reload
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div id="cat-data">
+                <table class="table table-striped" id="cat-data-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Kind</th>
+                        <th>Age</th>
+                        <th>Sex</th>
+                        <th>Favorite Foods</th>
+                        <th>Owner</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script>
+    const fetchCatData = () => {
+        const url = "http://localhost:8082/cat/"
+        return fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                return data;
+            });
+    }
+
+    const addCatToTable = (cat) => {
+        var table = document.getElementById("cat-data-table");
+        var row = table.insertRow(-1);
+        const props = ["id", "name", "kind", "age", "sex", "favorite_foods", "owner"];
+        for (const prop of props) {
+            var cell = row.insertCell(-1);
+            cell.innerHTML = cat[prop];
+        }
+    }
+
+    const clearTable = () => {
+        var table = document.getElementById("cat-data-table");
+        while (table.rows.length > 1) {
+            table.deleteRow(-1);
+        }
+    }
+
+    const updateTable = cats => {
+        clearTable();
+        for (const cat of cats) {
+            addCatToTable(cat);
+        }
+    }
+
+    fetchCatData()
+        .then(cats => updateTable(cats));
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

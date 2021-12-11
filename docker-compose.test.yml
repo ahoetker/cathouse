@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  db:
+    image: 'postgres:latest'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: test_db
+
+  sut:
+    image: 'cathouse:test'
+    build:
+      context: .
+      target: development
+    entrypoint: 
+      - /bin/bash
+    command: run_tests.sh
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_SERVER: db
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: test_db
+    depends_on:
+      - db
