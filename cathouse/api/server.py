@@ -12,7 +12,7 @@ from fastapi.templating import Jinja2Templates
 
 
 def get_application():
-    app = FastAPI(title="Cat Management Server", version="0.2.1")
+    app = FastAPI(title="Cat Management Server", version="0.2.2")
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -22,7 +22,7 @@ def get_application():
     )
     app.add_event_handler("startup", tasks.create_start_app_handler(app))
     app.add_event_handler("shutdown", tasks.create_stop_app_handler(app))
-    app.include_router(api_router, prefix="")
+    app.include_router(api_router, prefix="/api")
 
     app.mount("/static", StaticFiles(directory="cathouse/static"), name="static")
     templates = Jinja2Templates(directory="cathouse/templates")
