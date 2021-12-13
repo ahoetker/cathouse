@@ -50,7 +50,7 @@ test_cat = {
 @pytest.mark.asyncio
 async def test_create_user():
     async with AsyncClient(app=app, base_url="http://test") as ac:
-        response = await ac.post("/cat", json=test_cat)
+        response = await ac.post("/api/cat", json=test_cat)
         debug(response)
         assert response.status_code == 201
         assert isinstance(response.json()["id"], int)
