@@ -10,7 +10,7 @@ from typing import List
 router = APIRouter()
 
 
-@router.post("/", response_model=CatPublic, status_code=201)
+@router.post("/", response_model=CatPublic, status_code=201, operation_id="createCat")
 async def create_cat(
         cat: CatCreate,
         cats_repo: CatsRepository = Depends(get_repository(CatsRepository)),
@@ -19,7 +19,7 @@ async def create_cat(
     return CatPublic(**created_cat.dict())
 
 
-@router.get("/{id}", response_model=CatPublic)
+@router.get("/{id}", response_model=CatPublic, operation_id="getCatById")
 async def read_cat(
         id: int,
         cats_repo: CatsRepository = Depends(get_repository(CatsRepository)),
@@ -28,7 +28,7 @@ async def read_cat(
     return CatPublic(**created_cat.dict())
 
 
-@router.get("/", response_model=List[CatPublic])
+@router.get("/", response_model=List[CatPublic], operation_id="getAllCats")
 async def read_all_cats(
         cats_repo: CatsRepository = Depends(get_repository(CatsRepository)),
 ) -> List[CatPublic]:
@@ -36,7 +36,7 @@ async def read_all_cats(
     return [CatPublic(**cat.dict()) for cat in cats]
 
 
-@router.put("/{id}", response_model=CatPublic)
+@router.put("/{id}", response_model=CatPublic, operation_id="updateCatById")
 async def update_cat(
         id: int,
         cat: CatUpdate,
@@ -46,7 +46,7 @@ async def update_cat(
     return CatPublic(**updated_cat.dict())
 
 
-@router.delete("/{id}", response_model=CatPublic)
+@router.delete("/{id}", response_model=CatPublic, operation_id="deleteCatById")
 async def delete_cat(
         id: int,
         cats_repo: CatsRepository = Depends(get_repository(CatsRepository)),
