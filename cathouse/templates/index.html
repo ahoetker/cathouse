@@ -4,71 +4,38 @@
 
 {% block content %}
 <div class="container mt-3">
-    <div class="row">
-        <div class="col">
-            <h1>Cat Management Server</h1>
-        </div>
-        <div class="col">
-            <button onclick="fetchCatData().then(cats => updateTable(cats))" type="button" class="btn btn-primary">
-                Reload
-            </button>
-        </div>
+  <div class="row">
+    <div class="col">
+      <h1>Cat Management Server</h1>
     </div>
-    <div class="row">
-        <div id="cat-data">
-            <table class="table table-striped" id="cat-data-table">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Kind</th>
-                    <th>Age</th>
-                    <th>Sex</th>
-                    <th>Favorite Foods</th>
-                    <th>Owner</th>
-                </tr>
-            </table>
-        </div>
+    <div class="col">
+      <button
+        onclick="fetchCatData().then(cats => updateTable(cats))"
+        type="button"
+        class="btn btn-primary"
+      >
+        Reload
+      </button>
     </div>
-</div>
+  </div>
+  <div class="row">
+    <div id="cat-data">
+      <table class="table table-striped" id="cat-data-table">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Kind</th>
+          <th>Age</th>
+          <th>Sex</th>
+          <th>Favorite Foods</th>
+          <th>Owner</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>;
 {% endblock %}
 
 {% block scripts %}
-<script>
-    const fetchCatData = () => {
-        const url = "/api/cat/"
-        return fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                return data;
-            });
-    }
-
-    const addCatToTable = (cat) => {
-        var table = document.getElementById("cat-data-table");
-        var row = table.insertRow(-1);
-        const props = ["id", "name", "kind", "age", "sex", "favorite_foods", "owner"];
-        for (const prop of props) {
-            var cell = row.insertCell(-1);
-            cell.innerHTML = cat[prop];
-        }
-    }
-
-    const clearTable = () => {
-        var table = document.getElementById("cat-data-table");
-        while (table.rows.length > 1) {
-            table.deleteRow(-1);
-        }
-    }
-
-    const updateTable = cats => {
-        clearTable();
-        for (const cat of cats) {
-            addCatToTable(cat);
-        }
-    }
-
-    fetchCatData()
-        .then(cats => updateTable(cats));
-</script>
+<script src="/static/catService.js"></script>
 {% endblock %}
